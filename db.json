@@ -1,0 +1,34 @@
+{
+  "etudiant": [
+    {
+      "id": 1,
+      "name": "Anas",
+      "email": "anasAtmani@gmail.com",
+      "filiere": "BGI",
+      "photo": "anas.jpg",
+      "selected": false
+    },
+    {
+      "id": 2,
+      "name": "mrwan",
+      "email": "mrwan@gmail.com",
+      "filiere": "BGI",
+      "photo": "mrwan.jpg",
+      "selected": true
+    },
+    {
+      "id": 3,
+      "name": "Ayman_Abouhali",
+      "email": "Aymananas@gmail.com",
+      "filiere": "BGI",
+      "selected": true
+    },
+    {
+      "name": "Amine",
+      "email": "amineyassir@gmail.com",
+      "filiere": "BGI",
+      "selected": true,
+      "id": 4
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+<div class="container-fluid position-relative d-flex p-0"style="margin-top: -900px;">
+  <div  class="content">
+    <div class="container-fluid pt-4 px-4">
+      <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+          <div class="bg-secondary rounded h-100 p-4">
+            <h6 class="mb-4">Add New Etudiant </h6>
+            <form [formGroup]="newEtudiant" (ngSubmit)="handleSaveEtudiant()">
+
+              <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" formControlName="name"
+                           [ngClass]="{'is-valid':submitted && newEtudiant.controls['name'].errors}">
+                <div *ngIf="submitted && newEtudiant.controls['name'].errors" class="valid-feedback">
+                  <div *ngIf="newEtudiant.controls['name'].errors['required']" class="text-danger"> Name is required</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email address</label>
+                <input type="email" class="form-control"
+                       formControlName="email">
+              </div>
+              <div class="mb-3">
+                <label  class="form-label">Filiere</label>
+                <select class="form-control" formControlName="filiere">
+                  <option value="BGI">BGI</option>
+                  <option value="BGA">BGA</option>
+                  <option value="BGB">BGB</option>
+
+                </select>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input"formControlName="selected" >
+                <label class="form-check-label"></label>
+              </div>
+              <button class="btn btn-primary">Sign in</button>
+            </form>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+</div>
+

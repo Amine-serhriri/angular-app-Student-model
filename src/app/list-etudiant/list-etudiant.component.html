@@ -1,0 +1,97 @@
+
+<div  class=" container test">
+  <nav class="navbar navbar-expand">
+    <ul class="navbar navbar-nav">
+      <li>
+        <button (click)="ongetAllEtudiant()" class="btn btn-outline-info m-lg-2">All</button>
+      </li>
+      <li>
+        <button (click)="onGetSelectedEtudiant()" class="btn btn-outline-info m-lg-2">Selected </button>
+      </li>
+      <li>
+        <button (click)="onGetNewEtudiant()" class="btn btn-outline-info">New Etudiant  </button>
+      </li>
+    </ul>
+    <ul class="navbar navbar-nav ">
+      <li>
+        <form class="d-none d-md-flex ms-4" [formGroup]="searchEtudiant" (ngSubmit)="handleSearchEtudiant()">
+          <input class="form-control bg-white border-0" type="search" placeholder="Search" formControlName="name">
+          <button class="btn btn-outline-info">
+            <span class="fa fa-search"></span>
+          </button>
+        </form>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<ng-container *ngIf="etudiant$|async as result" [ngSwitch]="result.dataState">
+  <ng-container *ngSwitchCase="dataStateEnum.LOADING">
+    Loading ................
+  </ng-container>
+
+  <ng-container *ngSwitchCase="dataStateEnum.ERROR">
+   <div class="alert-danger">
+       {{result.errorMessage}}
+   </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="dataStateEnum.LOADED">
+    <div class="container-fluid position-relative d-flex p-0">
+      <div class="content">
+        <div class="container-fluid pt-4 px-4">
+          <div class="bg-secondary text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+              <h6 class="mb-0">List Etudiant </h6>
+              <a href="">Show All</a>
+            </div>
+            <div class="table-responsive">
+              <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                <tr class="text-white">
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Filere</th>
+                  <th scope="col">Selected</th>
+                  <th scope="col">Photo</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let e of result.data">
+                  <td>{{e.id}}</td>
+                  <td>{{e.name}}</td>
+                  <td>{{e.email}}</td>
+                  <td>{{e.filiere}}</td>
+                  <td>{{e.selected}}</td>
+                  <td>{{e.photo}}</td>
+                  <td>
+                    <button (click)="onSelect(e)" [ngClass]="e.selected?'btn btn-success':'btn btn-danger '" class="btn btn">
+                    <span *ngIf="e.selected"> Selected</span>
+                    <span *ngIf="!e.selected"> UnSelected</span>
+                    </button>
+                  </td>
+                  <td>
+                   <button (click)="onDeleteEtudiant(e)" class="btn btn-danger">
+                     <span class="fa fa-trash"></span>
+                   </button>
+                  </td>
+                  <td>
+                    <button (click)="onEditEtudiant(e)" class="btn btn-success">
+                      <span class="fa fa-edit"></span>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </ng-container>
+
+</ng-container>
+
